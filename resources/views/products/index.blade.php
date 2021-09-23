@@ -12,6 +12,9 @@
 						@unless(empty($product->description))
 							<p>{{ $product->description }}</p>
 						@endunless
+						@if($product->discount > 0)
+							<p class="text-danger">Nu <strong>{{ round($product->discount, 1) }}%</strong> korting! Orginiele prijs: <strong>&euro;{{ $product->getOriginal('price') }}</strong></p>
+						@endif
 					</div>
 					<button class="btn btn-primary">Meer info &amp; bestellen</button>
 				</div>

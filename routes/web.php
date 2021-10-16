@@ -45,6 +45,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('orders/packing', 'Admin\OrderController@packing')->name('admin.orders.packing');  
     Route::resource('orders', 'Admin\OrderController', ['as' => 'admin'])->only(['index', 'show', 'destroy']);
 
+    Route::resource('categories', 'Admin\CategoryController', ['as' => 'admin'])->except('show');
+
 });
 
 Auth::routes(['register' => false]);

@@ -11,6 +11,11 @@ class Product extends Model
     	return $this->hasMany('App\Type');
     }
 
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
     public function getPriceAttribute($value)
     {
         $discount = $value * ($this->discount / 100); //Korting in euro's

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Product;
 use App\Type;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -19,13 +20,15 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+        return view('admin.products.create')->with(compact('categories'));
     }
 
     public function store(Request $request)
     {
         $this->validate(request(), [
             'title' => 'required',
+            'category' => 'required',
             'price' => 'required|numeric',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
@@ -34,7 +37,8 @@ class ProductController extends Controller
         ]);
 
         $product = new Product();
-        $product->title = $request->title; 
+        $product->title = $request->title;
+        $product->category_id = $request->category;
         $product->price = $request->price;
         $product->active = $request->active;
         $product->leiding = $request->leiding;
@@ -97,14 +101,16 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        $categories = Category::all();
         return view('admin.products.edit')
-                ->with(compact('product'));
+                ->with(compact('product'))->with(compact('categories'));
     }
 
     public function update(Request $request, Product $product)
     {
         $this->validate(request(), [
             'title' => 'required',
+            'category' => 'required',
             'price' => 'required|numeric',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
@@ -113,6 +119,7 @@ class ProductController extends Controller
         ]);
 
         $product->title = $request->title; 
+        $product->category_id = $request->category;
         $product->price = $request->price;
         $product->active = $request->active;
         $product->leiding = $request->leiding;

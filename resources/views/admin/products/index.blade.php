@@ -13,13 +13,15 @@
 		<tr>
 			<th>Titel</th>
 			<th>Prijs</th>
+			<th>Kortingspercentage</th>
 			<th>Categorie</th>
 			<th colspan="4">&nbsp;</th>
 		</tr>
 		@foreach($products as $product)
 			<tr>
 				<td>{{ $product->title }}</td>
-				<td>&euro;{{ $product->price }}</td>
+				<td>&euro;{{ $product->getOriginal('price') }}</td>
+				<td>{{ $product->discount ? round($product->discount, 1) : 0 }} %</td>
 				<td>{{$product->category->name}}</td>
 				<td>
 					@if($product->active)

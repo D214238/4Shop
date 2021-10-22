@@ -17,6 +17,13 @@ class OrderController extends Controller
                 ->with('orders', Order::all());
     }
 
+    public function toggle(Order $order)
+    {
+        $order->delivered = !$order->delivered;
+        $order->save();
+        return view('admin.orders')->with('orders', Order::all());
+    }
+
     public function show(Order $order)
     {
         return view('admin.order')->with(compact('order'));

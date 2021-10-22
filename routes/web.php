@@ -19,6 +19,7 @@ Route::get('/winkel/mandje/verwijder/{key}', 'OrderController@remove')->name('ca
 Route::get('/winkel/bestellen', 'OrderController@order')->name('order');
 Route::post('/winkel/bestellen', 'OrderController@pay')->name('pay');
 Route::get('/winkel/{product}', 'ProductController@show')->name('products.show');
+Route::get('/winkel/categories/{category}', 'ProductController@category')->name('products.category');
 Route::post('/winkel/{product}', 'ProductController@order')->name('products.order');
 
 Route::get('/bestelling/{order}/{slug}', 'OrderController@show')->name('order.show');
@@ -40,6 +41,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::delete('products/{product}/types/{type}', 'Admin\ProductController@types_delete')->name('admin.products.types.delete');
     
     Route::get('orders/factory', 'Admin\OrderController@factory')->name('admin.orders.factory');
+    Route::get('orders/{order}/toggle', 'Admin\OrderController@toggle')->name('admin.orders.toggle');
     Route::get('orders/mail', 'Admin\OrderController@mail')->name('admin.orders.mail');        
     Route::post('orders/mail', 'Admin\OrderController@mail_send')->name('admin.orders.mail.send');
     Route::get('orders/packing', 'Admin\OrderController@packing')->name('admin.orders.packing');  

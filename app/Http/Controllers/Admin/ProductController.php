@@ -30,6 +30,7 @@ class ProductController extends Controller
             'title' => 'required',
             'category' => 'required',
             'price' => 'required|numeric',
+            'discount' => 'required|numeric',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
             'image' => 'nullable|image',
@@ -40,6 +41,7 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->category_id = $request->category;
         $product->price = $request->price;
+        $product->discount = $request->discount;
         $product->active = $request->active;
         $product->leiding = $request->leiding;
         $product->description = $request->description;
@@ -112,6 +114,7 @@ class ProductController extends Controller
             'title' => 'required',
             'category' => 'required',
             'price' => 'required|numeric',
+            'discount' => 'required|numeric',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
             'image' => 'nullable|image',
@@ -121,6 +124,7 @@ class ProductController extends Controller
         $product->title = $request->title; 
         $product->category_id = $request->category;
         $product->price = $request->price;
+        $product->discount = $request->discount;
         $product->active = $request->active;
         $product->leiding = $request->leiding;
         $product->description = $request->description;

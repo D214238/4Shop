@@ -2,6 +2,17 @@
 
 @section('content')
 
+	@if(!str_contains(url()->current(), 'categories'))
+		<div class="categories-header">
+			<h4 class="mb-3">Categorieën:</h4>
+			<div class="category-link-container d-flex border-bottom pb-3">
+				@foreach($categories as $category)
+					<a href="{{ route('products.category', $category) }}" class="mr-3 mb-3"><button class="btn btn-secondary">{{ $category->name }}</button></a>
+				@endforeach
+			</div>
+		</div>
+	@endif
+
 	<div class="products">
 		@foreach($products as $product)
 			<a class="product-row no-link" href="{{ route('products.show', $product) }}">
